@@ -26,6 +26,7 @@ public class XlsReadersFactory {
         switch (name) {
             case "B2B":
                 excelReaderTemplate = new B2BReader(sheet);
+                //@TODO czy 2fabryka dla strategi??
                 excelReaderTemplate.setHeaderToValidation(new B2BHeaders());
             break;
             case "USER":
