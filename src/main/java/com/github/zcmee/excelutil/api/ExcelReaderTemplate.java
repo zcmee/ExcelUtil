@@ -13,7 +13,6 @@ public abstract class ExcelReaderTemplate<T> {
     protected Sheet sheet;
     private HeaderToValidationStrategy headerToValidation;
 
-
     public ExcelReaderTemplate(Sheet sheet){
         this.sheet = sheet;
     }
@@ -48,7 +47,7 @@ public abstract class ExcelReaderTemplate<T> {
         this.headerToValidation = headerToValidation;
     }
 
-    //@TODO czy to dobre???
+    //@TODO clean code???
     private boolean isValidHeaders() {
         if(headerToValidation == null) {
             return false; }

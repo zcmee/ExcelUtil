@@ -10,7 +10,8 @@ public class B2BHeaders implements HeaderToValidationStrategy {
         return new String[] {
             "idx",
             "imie",
-            "lokalizacja"
+            "lokalizacja",
+            "datapodpisaniakontraktu"
         };
 
     }

@@ -7,6 +7,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class B2BReader extends ExcelReaderTemplate<B2B> {
@@ -24,8 +25,9 @@ public class B2BReader extends ExcelReaderTemplate<B2B> {
             Integer id = CellOperations.getInstance().getValueFromCellAsInteger(row, 0);
             String name = CellOperations.getInstance().getValueFromCell(row, 1);
             String address = CellOperations.getInstance().getValueFromCell(row, 2);
+            Date dateSigningContract = CellOperations.getInstance().getValueFromCellAsDate(row, 3, "dd-MM-yyyy");
 
-            B2B b2b = new B2B(id, name, address);
+            B2B b2b = new B2B(id, name, address, dateSigningContract);
             agreements.add(b2b);
         }
 

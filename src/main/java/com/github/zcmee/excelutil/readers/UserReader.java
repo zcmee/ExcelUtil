@@ -19,7 +19,6 @@ public class UserReader extends ExcelReaderTemplate<User> {
     protected List<User> getXlsToJavaTransformator() {
         List<User> users = new ArrayList<>(sheet.getPhysicalNumberOfRows());
 
-        //@TODO jak zrobić gdy =, żeby pomijał/nie pomijał nagłówki
         for(Row row : sheet){
             String firstName = CellOperations.getInstance().getValueFromCell(row, 6);
             String lastName = CellOperations.getInstance().getValueFromCell(row, 7);

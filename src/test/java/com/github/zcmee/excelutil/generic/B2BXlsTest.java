@@ -39,6 +39,16 @@ public class B2BXlsTest {
         assertEquals(3, agreements.size());
     }
 
+    @Test
+    public void correctB2BWithoutHeadersTestWithEmptyStringFields() throws IOException, InvalidFormatException {
+        File file = getFileFromResource("testfiles/b2b2.xlsx");
+        Sheet sheet = getSheet(file, 0);
+        B2BReader reader = new B2BReader(sheet);
+        List<B2B> agreements =  reader.generateComplaint();
+
+        assertEquals(4, agreements.size());
+    }
+
     private File getFileFromResource(String path) {
         ClassLoader classLoader = getClass().getClassLoader();
         return new File(classLoader.getResource(path).getFile());
