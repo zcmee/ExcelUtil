@@ -16,4 +16,6 @@ public class ExcelNotifications {
     public static final String EMPTY_FILE = "Przesłany plik excel jest pusty";
     public static final String INVALID_FILE = "Przesłany plik jest nie poprawny";
     public static final String INVALID_VALIDATION_HEADERS = "Niepoprawna walidacja nagłówków w przesłanym pliku excel";
+
+    public static final String INVALID_CREATE_EXCEL_FILE = "Nieudało się utworzyć pliku Excel";
 }

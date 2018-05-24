@@ -2,18 +2,14 @@ package com.github.zcmee.excelutil.headers;
 
 import com.github.zcmee.excelutil.api.ExcelHeadersStrategy;
 
-public class B2BHeaders implements ExcelHeadersStrategy {
+public class UserHeaders implements ExcelHeadersStrategy {
 
     @Override
     public String[] getArrayHeaders() {
-
         return new String[] {
-            "idx",
-            "imie",
-            "lokalizacja",
-            "datapodpisaniakontraktu"
+                "Imię",
+                "Naziwsko",
+                "Wiek"
         };
-
     }
-
 }

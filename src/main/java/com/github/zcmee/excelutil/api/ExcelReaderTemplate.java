@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class ExcelReaderTemplate<T> {
     protected abstract List<T> getXlsToJavaTransformator();
     protected Sheet sheet;
-    private HeaderToValidationStrategy headerToValidation;
+    private ExcelHeadersStrategy excelHeaders;
 
     public ExcelReaderTemplate(Sheet sheet){
         this.sheet = sheet;
@@ -29,29 +29,29 @@ public abstract class ExcelReaderTemplate<T> {
     protected void validateHeadersXls() {
         Row row = sheet.getRow(0);
         if(row == null) throw new IllegalArgumentException(ExcelNotifications.INVALID_FILE);
-        for (int i = 0; i < headerToValidation.getArrayHeadersToValidation().length; ++i) {
+        for (int i = 0; i < excelHeaders.getArrayHeaders().length; ++i) {
             String cellVaule = CellOperations.getInstance().getValueFromCell(row, i).trim();
             String cellForComparison = TextOperations.getInstance().prepareToComparison(cellVaule);
-            String header = headerToValidation.getArrayHeadersToValidation()[i];
+            String header = excelHeaders.getArrayHeaders()[i];
             if (!header.equalsIgnoreCase(cellForComparison)) {
                 throw new IllegalArgumentException(ExcelNotifications.INVALID_VALIDATION_HEADERS);
             }
         }
     }
 
-    public HeaderToValidationStrategy getHeaderToValidation() {
-        return headerToValidation;
+    public ExcelHeadersStrategy getHeaderToValidation() {
+        return excelHeaders;
     }
 
-    public void setHeaderToValidation(HeaderToValidationStrategy headerToValidation) {
-        this.headerToValidation = headerToValidation;
+    public void setHeaderToValidation(ExcelHeadersStrategy excelHeaders) {
+        this.excelHeaders = excelHeaders;
     }
 
     //@TODO clean code???
     private boolean isValidHeaders() {
-        if(headerToValidation == null) {
+        if(excelHeaders == null) {
             return false; }
-        else if(headerToValidation.getArrayHeadersToValidation().length < 1)
+        else if(excelHeaders.getArrayHeaders().length < 1)
             return false;
 
         return true;
