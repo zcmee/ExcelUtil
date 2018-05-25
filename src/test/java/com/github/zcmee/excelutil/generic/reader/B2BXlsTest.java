@@ -1,4 +1,4 @@
-package com.github.zcmee.excelutil.generic;
+package com.github.zcmee.excelutil.generic.reader;
 
 import com.github.zcmee.excelutil.dtoes.B2B;
 import com.github.zcmee.excelutil.headers.B2BHeaders;
@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class B2BXlsTest {
 
@@ -36,6 +37,16 @@ public class B2BXlsTest {
         List<B2B> agreements =  reader.generateComplaint();
 
         assertEquals(3, agreements.size());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void writerB2BWithWrongHeaders() throws IOException, InvalidFormatException {
+        File file = getFileFromResource("testfiles/b2b.xlsx");
+        Sheet sheet = getSheet(file, 0);
+        B2BReader reader = new B2BReader(sheet);
+        reader.setHeaderToValidation(new WrongB2BHeaders());
+        List<B2B> users =  reader.generateComplaint();
+        assertTrue(false);
     }
 
     @Test
