@@ -21,9 +21,11 @@ public class UserXlsTest {
     @Test
     public void testUserFile() throws IOException, InvalidFormatException {
         File file = FileOperations.getInstance().getFileFromResource("testfiles/users.xls");
+
         Sheet sheet = getSheet(file, 0);
         UserReader reader = new UserReader(sheet);
         List<User> users =  reader.generateComplaint();
+
         assertEquals(2, users.size());
     }
 

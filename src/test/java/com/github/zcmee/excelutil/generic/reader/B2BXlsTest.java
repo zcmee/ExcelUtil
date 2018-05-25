@@ -21,6 +21,7 @@ public class B2BXlsTest {
     @Test
     public void correctB2BWithHeadersTest() throws IOException, InvalidFormatException {
         File file = getFileFromResource("testfiles/b2b.xlsx");
+
         Sheet sheet = getSheet(file, 0);
         B2BReader reader = new B2BReader(sheet);
         reader.setHeaderToValidation(new B2BHeaders());
@@ -32,6 +33,7 @@ public class B2BXlsTest {
     @Test
     public void correctB2BWithoutHeadersTest() throws IOException, InvalidFormatException {
         File file = getFileFromResource("testfiles/b2b.xlsx");
+
         Sheet sheet = getSheet(file, 0);
         B2BReader reader = new B2BReader(sheet);
         List<B2B> agreements =  reader.generateComplaint();
