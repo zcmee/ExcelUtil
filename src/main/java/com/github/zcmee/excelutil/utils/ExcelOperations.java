@@ -19,7 +19,7 @@ public class ExcelOperations {
     }
 
     public Sheet getSheet(File file, int sheetNumber)  {
-        try(Workbook workbook = (Workbook) WorkbookFactory.create(file)) {
+        try(Workbook workbook = WorkbookFactory.create(file)) {
             return workbook.getSheetAt(sheetNumber);
         } catch(Exception ex) {
             throw new ConvertException(ex);
