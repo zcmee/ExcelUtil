@@ -9,7 +9,8 @@ public class UserHeaders implements ExcelHeadersStrategy {
         return new String[] {
                 "Imię",
                 "Naziwsko",
-                "Wiek"
+                "Wiek",
+                "Data podpisania kontraktu"
         };
     }
 }

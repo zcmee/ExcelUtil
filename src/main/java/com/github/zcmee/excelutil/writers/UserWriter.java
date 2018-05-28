@@ -19,6 +19,7 @@ public class UserWriter extends ExcelWriterTemplate<User> {
             row.createCell(0).setCellValue(user.getFirstName());
             row.createCell(1).setCellValue(user.getLastName());
             row.createCell(2).setCellValue(user.getAge());
+            row.createCell(3).setCellValue(user.getDateSigningContract().toString());
         }
     }
 }

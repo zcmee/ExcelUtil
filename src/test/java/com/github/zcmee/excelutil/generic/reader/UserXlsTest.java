@@ -2,6 +2,7 @@ package com.github.zcmee.excelutil.generic.reader;
 
 import com.github.zcmee.excelutil.dtoes.User;
 import com.github.zcmee.excelutil.readers.UserReader;
+import com.github.zcmee.excelutil.utils.DateOperations;
 import com.github.zcmee.excelutil.utils.ExcelOperations;
 import com.github.zcmee.excelutil.utils.FileOperations;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -20,6 +21,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class UserXlsTest {
+    private final static DateOperations dateOperations = DateOperations.getInstance();
 
     @Test
     public void testUserFileWithCorrectData() {
@@ -30,7 +32,9 @@ public class UserXlsTest {
         List<User> users =  reader.generateComplaint();
         List<User> exceptedUsers = getExceptedListUserForExcelFile();
 
-        assertThat(users, hasItems(new User("Piotr", "Kowalski", 33)));
+        User tmpUser = new User("Piotr", "Kowalski", 33, dateOperations.getDateFromString("yyyy-MM-dd", "2018-09-10"));
+
+        assertThat(users, hasItems(tmpUser));
         assertEquals(users.size(), exceptedUsers.size());
         assertThat(users, is(exceptedUsers));
     }
@@ -48,16 +52,16 @@ public class UserXlsTest {
     }
 
     private List<User> getExceptedListUserForExcelFile() {
-        User user1 = new User("Piotr", "Kowalski", 33);
-        User user2 = new User("Tomasz", "Terka", 29);
+        User user1 = new User("Piotr", "Kowalski", 33, dateOperations.getDateFromString("yyyy-MM-dd", "2018-09-10"));
+        User user2 = new User("Tomasz", "Terka", 29, dateOperations.getDateFromString("yyyy-MM-dd", "2018-09-11"));
 
         List<User> exceptedUsers = new ArrayList<>(Arrays.asList(user1, user2));
         return exceptedUsers;
     }
 
     private List<User> getWrongListUserForExcelFile() {
-        User user1 = new User("Piotr", "Kowalski", 33);
-        User user2 = new User("Tomasz", "Terka", 45);
+        User user1 = new User("Piotr", "Kowalski", 33, dateOperations.getDateFromString("yyyy-MM-dd", "2018-09-10"));
+        User user2 = new User("Tomasz", "Terka", 45, dateOperations.getDateFromString("yyyy-MM-dd", "2018-09-11"));
 
         List<User> exceptedUsers = new ArrayList<>(Arrays.asList(user1, user2));
         return exceptedUsers;

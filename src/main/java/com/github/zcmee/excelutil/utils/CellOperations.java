@@ -3,6 +3,7 @@ package com.github.zcmee.excelutil.utils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
+import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -31,16 +32,16 @@ public class CellOperations {
     }
 
     public Date getValueFromCellAsDate(Row row, int column, String dateFormat) {
-        DateTimeFormatter defaultDateFormat = DateTimeFormat.forPattern(dateFormat);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(dateFormat);
         Cell cell = row.getCell(column, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
-        return getDateByCellType(cell, defaultDateFormat);
+        return getDateByCellType(cell, dateTimeFormatter);
     }
 
     private Date getDateByCellType(Cell cell, DateTimeFormatter formatter){
-
         switch(cell.getCellTypeEnum()) {
             case NUMERIC:
-                return cell.getDateCellValue();
+                Date dateFromCell = cell.getDateCellValue();
+                return new DateTime(dateFromCell).toDate();
             case STRING:
                 String value = cell.getStringCellValue();
                 return formatter.parseDateTime(value).toDate();

@@ -2,6 +2,7 @@ package com.github.zcmee.excelutil.generic.writers;
 
 import com.github.zcmee.excelutil.dtoes.User;
 import com.github.zcmee.excelutil.headers.UserHeaders;
+import com.github.zcmee.excelutil.utils.DateOperations;
 import com.github.zcmee.excelutil.writers.UserWriter;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
@@ -15,7 +16,6 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 
 public class WriterUserXlsTest {
-    private final static String PATH_TO_FILE = "/home/Adam/Desktop/";
 
     @Test
     public void writerUserWithoutHeaders() throws IOException, InvalidFormatException {
@@ -46,8 +46,8 @@ public class WriterUserXlsTest {
     }
 
     private List<User> getFilledList() {
-        User user1 = new User("Adam", "Bravo", 12);
-        User user2 = new User("Piotr", "Jajeczniak", 25);
+        User user1 = new User("Adam", "Bravo", 12, DateOperations.getInstance().getDateFromString("yyyy-mm-dd", "2019-09-10"));
+        User user2 = new User("Piotr", "Jajeczniak", 25, DateOperations.getInstance().getDateFromString("yyyy-mm-dd", "2019-09-11"));
 
         List<User> users =  new ArrayList<>(Arrays.asList(user1, user2));
         return users;

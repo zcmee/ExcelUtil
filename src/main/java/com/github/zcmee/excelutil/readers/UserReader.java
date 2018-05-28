@@ -7,6 +7,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class UserReader extends ExcelReaderTemplate<User> {
@@ -18,13 +19,14 @@ public class UserReader extends ExcelReaderTemplate<User> {
     @Override
     protected List<User> getXlsToJavaTransformator() {
         List<User> users = new ArrayList<>(sheet.getPhysicalNumberOfRows());
+        CellOperations cellOperations = CellOperations.getInstance();
 
         for(Row row : sheet){
-            String firstName = CellOperations.getInstance().getValueFromCell(row, 6);
-            String lastName = CellOperations.getInstance().getValueFromCell(row, 7);
-            Integer age = CellOperations.getInstance().getValueFromCellAsInteger(row, 8);
-
-            User user = new User(firstName, lastName, age);
+            String firstName = cellOperations.getValueFromCell(row, 6);
+            String lastName = cellOperations.getValueFromCell(row, 7);
+            Integer age = cellOperations.getValueFromCellAsInteger(row, 8);
+            Date date = cellOperations.getValueFromCellAsDate(row, 9, "yyyy-MM-dd");
+            User user = new User(firstName, lastName, age, date);
             users.add(user);
         }
 
