@@ -11,7 +11,7 @@ public class TextOperations {
     }
 
     public String prepareToComparison(String text) {
-        String preparedText = text.replaceAll("[\n\t _\"]","").toLowerCase();
+        String preparedText = text.replaceAll("[\n\t ]","").toLowerCase();
         return replacePolishCharacters(preparedText);
     }
 
