@@ -21,7 +21,7 @@ public class XlsReadersFactory {
     public ExcelReaderTemplate createXlsReader(String name, MultipartFile multipartFile) {
         ExcelReaderTemplate excelReaderTemplate;
         Workbook workbook = multipartFileToWorkbookConverter.convert(multipartFile);
-        Sheet  sheet = workbook.getSheetAt(0);
+        Sheet sheet = workbook.getSheetAt(0);
 
         switch (name) {
             case "B2B":

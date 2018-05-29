@@ -18,7 +18,7 @@ public abstract class ExcelReaderTemplate<T> {
     }
 
     public List<T> generateComplaint() {
-        validXlsFile();
+        validXlsFileBeforeGenerate();
         return getXlsToJavaTransformator();
     }
 
@@ -57,7 +57,7 @@ public abstract class ExcelReaderTemplate<T> {
         return true;
     }
 
-    private void validXlsFile() {
+    private void validXlsFileBeforeGenerate() {
         if(sheet == null) throw new IllegalArgumentException(ExcelNotifications.FILE_NOT_FOUND);
         if(isValidHeaders()) validateHeadersXls();
         if(getActualNumberRows() < 1) throw new IllegalArgumentException(ExcelNotifications.EMPTY_FILE);
