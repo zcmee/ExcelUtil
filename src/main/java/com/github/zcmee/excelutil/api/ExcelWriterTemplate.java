@@ -33,14 +33,6 @@ public abstract class ExcelWriterTemplate<T> {
         return geExcelFile();
     }
 
-    public List<T> getElementsToSaveExcelFile() {
-        return elementsToSaveExcelFile;
-    }
-
-    public void setElementsToSaveExcelFile(List<T> elementsToSaveExcelFile) {
-        this.elementsToSaveExcelFile = elementsToSaveExcelFile;
-    }
-
     public void setHeaders(ExcelHeadersStrategy headers) {
         this.headers = headers;
     }
