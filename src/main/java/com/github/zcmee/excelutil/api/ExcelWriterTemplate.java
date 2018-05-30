@@ -41,10 +41,6 @@ public abstract class ExcelWriterTemplate<T> {
         this.elementsToSaveExcelFile = elementsToSaveExcelFile;
     }
 
-    public ExcelHeadersStrategy getHeaders() {
-        return headers;
-    }
-
     public void setHeaders(ExcelHeadersStrategy headers) {
         this.headers = headers;
     }

@@ -26,10 +26,6 @@ public abstract class ExcelReaderTemplate<T> {
         return sheet.getPhysicalNumberOfRows();
     }
 
-    public ExcelHeadersStrategy getHeaderToValidation() {
-        return excelHeaders;
-    }
-
     public void setHeaderToValidation(ExcelHeadersStrategy excelHeaders) {
         this.excelHeaders = excelHeaders;
     }
@@ -58,4 +54,3 @@ public abstract class ExcelReaderTemplate<T> {
     }
 
 }
-
