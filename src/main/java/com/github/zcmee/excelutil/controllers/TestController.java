@@ -13,7 +13,6 @@ import java.util.List;
 public class TestController {
     private final XlsReadersFactory xlsReadersFactory;
 
-    //@TODO co zrobić z utilasmi gdy komponent ma być użyty klasie nie springowej
     public TestController(XlsReadersFactory xlsReadersFactory) {
         this.xlsReadersFactory = xlsReadersFactory;
     }

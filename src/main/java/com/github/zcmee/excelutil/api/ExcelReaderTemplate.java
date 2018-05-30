@@ -26,6 +26,14 @@ public abstract class ExcelReaderTemplate<T> {
         return sheet.getPhysicalNumberOfRows();
     }
 
+    public ExcelHeadersStrategy getHeaderToValidation() {
+        return excelHeaders;
+    }
+
+    public void setHeaderToValidation(ExcelHeadersStrategy excelHeaders) {
+        this.excelHeaders = excelHeaders;
+    }
+
     protected void validateHeadersXls() {
         Row row = sheet.getRow(0);
         if(row == null) throw new IllegalArgumentException(ExcelNotifications.INVALID_FILE);
@@ -39,28 +47,14 @@ public abstract class ExcelReaderTemplate<T> {
         }
     }
 
-    public ExcelHeadersStrategy getHeaderToValidation() {
-        return excelHeaders;
-    }
-
-    public void setHeaderToValidation(ExcelHeadersStrategy excelHeaders) {
-        this.excelHeaders = excelHeaders;
-    }
-
-    //@TODO clean code???
-    private boolean isValidHeaders() {
-        if(excelHeaders == null) {
-            return false; }
-        else if(excelHeaders.getArrayHeaders().length < 1)
-            return false;
-
-        return true;
-    }
-
     private void validXlsFileBeforeGenerate() {
         if(sheet == null) throw new IllegalArgumentException(ExcelNotifications.FILE_NOT_FOUND);
         if(isValidHeaders()) validateHeadersXls();
         if(getActualNumberRows() < 1) throw new IllegalArgumentException(ExcelNotifications.EMPTY_FILE);
+    }
+
+    private boolean isValidHeaders() {
+        return (excelHeaders != null && excelHeaders.getArrayHeaders().length > 0);
     }
 
 }
